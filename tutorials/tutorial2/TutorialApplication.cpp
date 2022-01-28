@@ -15,8 +15,7 @@ void TutorialApplication::createCamera()
   mCamera->setPosition(Ogre::Vector3(0, 300, 500));
   mCamera->lookAt(Ogre::Vector3(0, 0, 0));
   mCamera->setNearClipDistance(5);
- 
-  mCameraMan = new OgreBites::SdkCameraMan(mCamera);
+
 }
  
 void TutorialApplication::createViewports()
