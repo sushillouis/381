@@ -1,29 +1,40 @@
 #ifndef TUTORIALAPPLICATION_H
 #define TUTORIALAPPLICATION_H
  
-#include "BaseApplication.h"
+#include <OgreRoot.h>
+#include <OgreWindowEventUtilities.h>
+
+#include <OISEvents.h>
+#include <OISInputManager.h>
+#include <OISKeyboard.h>
+#include <OISMouse.h>
  
-class TutorialApplication : public BaseApplication
+class TutorialApplication
+  : public Ogre::WindowEventListener,
+    public Ogre::FrameListener
 {
 public:
   TutorialApplication();
   virtual ~TutorialApplication();
  
+  bool go();
+
 private:
-  virtual void createScene();
   virtual bool frameRenderingQueued(const Ogre::FrameEvent& fe);
  
-  virtual bool keyPressed(const OIS::KeyEvent& ke);
-  virtual bool keyReleased(const OIS::KeyEvent& ke);
+  virtual void windowResized(Ogre::RenderWindow* rw);
+  virtual void windowClosed(Ogre::RenderWindow* rw);
  
-  virtual bool mouseMoved(const OIS::MouseEvent& me);
-  virtual bool mousePressed(const OIS::MouseEvent& me, OIS::MouseButtonID id);
-  virtual bool mouseReleased(const OIS::MouseEvent& me, OIS::MouseButtonID id);
+  Ogre::Root* mRoot;
+  Ogre::String mResourcesCfg;
+  Ogre::String mPluginsCfg;
+  Ogre::RenderWindow* mWindow;
+  Ogre::SceneManager* mSceneMgr;
+  Ogre::Camera* mCamera;
  
-  Ogre::Real mRotate;
-  Ogre::Real mMove;
-  Ogre::SceneNode* mCamNode;
-  Ogre::Vector3 mDirection;
+  OIS::InputManager* mInputMgr;
+  OIS::Keyboard* mKeyboard;
+  OIS::Mouse* mMouse;
  
 };
  
